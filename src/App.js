@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react' //IMPORTO PAQUETES DE REACT
+import Lamp from './components/Lamp' //IMPORTO COMPONENTE Lamp
 
-function App() {
+import Texto from './components/Texto' //IMPORTO COMPONENTE Texto
+
+const App = () =>{   //CREO COMPONENTE FUNCIONAL APP
+  const [valor,setValor] = React.useState(300) //USO HOOK useState para poder cambiar valor de const valor
+  const [texto, setTexto] = React.useState('') //USO HOOK useState para poder cambiar valor de const texto
+
+  const addValor=()=>{ //CREO FUNCION addValor
+
+    setValor(valor+1) //CAMBIO VALOR de const valor, A SU VALOR ACTUAL LE AUMENTO 1
+
+  }
+
+  console.log(texto)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Texto valor={valor} texto={texto}/> {/*LLAMO A COMPONENTE IMPORTADO Texto y le paso como props valor y texto*/}
+    <Lamp />
+    <button onClick={addValor}>AGREGAR VALOR</button>
+    <button onClick={()=>setValor(valor-1)}>RESTAR VALOR</button>
+    <input onChange={e=>setTexto(e.target.value)} ></input>
+    </>
   );
 }
 
